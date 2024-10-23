@@ -36,6 +36,9 @@ Este sistema implementa un modelo de clasificación basado en **Random Forest** 
 ## Descripción General
 Este producto permite reconocer gestos de las manos a través de una cámara web y traducirlos en caracteres en tiempo real. Utiliza técnicas de aprendizaje automático y visión por computadora para detectar y clasificar los gestos de manera eficiente.
 
+**Nota:** El traductor de señas actualmente es capaz de traducir solo algunas letras del abecedario, específicamente: **A, B, C, D, E, F, I, K, L, M, N, O, P, Q, R, T, U, V, W, X, Y**.
+Su función es deletrear palabras con las letras existentes en el modelo.
+
 ## Requisitos del Sistema
 - Una computadora con una cámara web.
 - **Python** 3.7 o superior.
