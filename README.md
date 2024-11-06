@@ -31,6 +31,9 @@ Este sistema implementa un modelo de clasificación basado en **Random Forest** 
 4. **Predicción en Tiempo Real:**
    - El script `inference_classifier.py` utiliza el modelo entrenado para predecir los gestos de la mano capturados en tiempo real por la cámara, mostrando los caracteres predichos en pantalla.
 
+5. **Predicción en Tiempo Real-Web:**
+   - El script `classifier_web.py` utiliza el modelo entrenado para predecir los gestos de la mano capturados en tiempo real por la cámara, mostrando los caracteres predichos en pantalla pero en una web.
+
 # Documentación para el Usuario (Mínimo Producto Viable)
 
 ## Descripción General
