@@ -41,8 +41,8 @@ Su función es deletrear palabras con las letras existentes en el modelo.
 
 ## Requisitos del Sistema
 - Una computadora con una cámara web.
-- **Python** 3.7 o superior.
-- Librerías necesarias: `OpenCV`, `MediaPipe`, `NumPy`, `pickle`, `scikit-learn`.
+- Python 3.7 o superior.
+- Librerías necesarias: OpenCV, MediaPipe, NumPy, pickle, scikit-learn, fastapi, uvicorn.
 
 ## Instalación y Configuración
 
@@ -54,6 +54,11 @@ Su función es deletrear palabras con las letras existentes en el modelo.
      ```bash
      pip install opencv-python mediapipe numpy scikit-learn
      ```
+
+### Predicción en Tiempo Real:
+Para predicción en tiempo real, existen dos opciones:
+1. **Localmente**: Ejecutar el script `inference_classifier.py`.
+2. **Web**: Ejecutar el script `classifier_web.py`, que inicia un servidor WebSocket mediante FastAPI para recibir fotogramas y enviar predicciones en tiempo real.
 
 ## Uso del Producto
 
@@ -77,9 +82,13 @@ Su función es deletrear palabras con las letras existentes en el modelo.
      ```
 
 4. **Ejecutar el Sistema de Predicción en Tiempo Real:**
-   - Inicie el sistema de predicción en tiempo real ejecutando el siguiente comando:
+   - **Si desea usar el modelo de manera local**: Ejecute el siguiente comando:
      ```bash
      python inference_classifier.py
+     ```
+   - **Si desea usar el modelo a través de la web**: Inicie el servidor WebSocket ejecutando:
+     ```bash
+     python classifier_web.py
      ```
 
 ## Instrucciones para el Usuario
@@ -99,5 +108,6 @@ Su función es deletrear palabras con las letras existentes en el modelo.
    - El sistema mostrará dos ventanas:
      - Una ventana con el video en tiempo real y las detecciones de manos.
      - Otra ventana que muestra la frase construida a partir de los gestos detectados.
+
 
 
