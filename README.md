@@ -15,7 +15,8 @@ Este sistema implementa un modelo de clasificación basado en **Random Forest** 
    - uvicorn
    - websockets
      ```bash
-     pip install fastapi uvicorn websockets
+     pip install fastapi uvicorn websockets pickle-mixin opencv-python mediapipe numpy scikit-learn
+
      ```
 2. **Estructura de Archivos:**
    - `data/` (directorio que contiene las imágenes de entrenamiento organizadas por clases)
