@@ -19,9 +19,15 @@ Este sistema implementa un modelo de clasificación basado en **Random Forest** 
 
      ```
 2. **Estructura de Archivos:**
-   - `data/` (directorio que contiene las imágenes de entrenamiento organizadas por clases)
-   - `data.pickle` (archivo que contiene los datos y etiquetas de entrenamiento serializados)
-   - `model.p` (archivo que contiene el modelo entrenado)
+├── collect_imgs.py
+├── create_dataset.py
+├── data.pickle
+├── inference_classifier.py
+├── train_classifier.py
+├── app/
+│   ├── index.html
+│   ├── main.py
+│   ├── model.p
 
 ## Configuración del Sistema
 
