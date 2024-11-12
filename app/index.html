@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Colsign AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <style>
+      /* Fondo y estilos de cuerpo */
+      body {
+        background-color: #f3f4f6;
+        font-family: Arial, sans-serif;
+        color: #333;
+      }
+      
+      h1, h2 {
+        color: #4a5568;
+        text-align: center;
+      }
+
+      /* Estilo de la tarjeta principal */
+      .card {
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+      }
+
+      /* Estilo del video */
+      #video {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Sección de texto y predicción */
+      #prediction, #texto {
+        font-size: 1.2em;
+        color: #2d3748;
+        font-weight: bold;
+      }
+
+      /* Botones y teclas */
+      .btn-custom {
+        background-color: #4299e1;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 8px 12px;
+        cursor: pointer;
+      }
+
+      .btn-custom:hover {
+        background-color: #3182ce;
+      }
+    </style>
+  </head>
+  <body class="d-flex align-items-center justify-content-center vh-100">
+    <div class="col-md-6">
+      <h1>Colsign AI</h1>
+      
+      <!-- Tarjeta principal -->
+      <div class="card mt-4">
+        <h2 class="text-center">Video de Reconocimiento de Señales</h2>
+        <video id="video" autoplay playsinline></video>
+        <canvas id="canvas" style="display: none"></canvas>
+        <p class="mt-3 text-center">Predicción: <span id="prediction">Conectando...</span></p>
+      </div>
+
+      <!-- Nueva sección de deletreo -->
+      <div class="card mt-4">
+        <h2 class="text-center">Deletreo</h2>
+        <p class="text-center">Escribe utilizando el reconocimiento de manos:</p>
+        <p class="text-center">Texto: <span id="texto"></span></p>
+      </div>
+    </div>
+
+    <script>
+      const video = document.getElementById("video");
+      const canvas = document.getElementById("canvas");
+      const predictionDisplay = document.getElementById("prediction");
+      const textoDisplay = document.getElementById("texto");
+      const ctx = canvas.getContext("2d");
+
+      const websocket = new WebSocket("ws://localhost:8000/ws");
+
+      let phrase = ""; // Almacena la frase en construcción
+      let ultimaLetra = ""; // Almacena la última letra clasificada
+
+      async function startVideo() {
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({
+            video: true,
+          });
+          video.srcObject = stream;
+        } catch (err) {
+          console.error("Hubo un error al intentar acceder a la cámara: ", err);
+        }
+      }
+
+      video.addEventListener("play", () => {
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+
+        setInterval(() => {
+          ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+          canvas.toBlob((blob) => {
+            if (websocket.readyState === WebSocket.OPEN) {
+              websocket.send(blob);
+            }
+          }, "image/jpeg");
+        }, 100);
+      });
+
+      websocket.onmessage = (event) => {
+        const data = event.data;
+        if (data !== "No se detecta mano") {
+          ultimaLetra = data; // Guarda la última letra clasificada
+          predictionDisplay.textContent = `Predicción actual: ${ultimaLetra}`;
+        } else {
+          predictionDisplay.textContent = data;
+        }
+      };
+
+      websocket.onopen = () => {
+        predictionDisplay.textContent = "Esperando a la mano...";
+        console.log("Conexión establecida");
+      };
+
+      websocket.onclose = () => {
+        predictionDisplay.textContent = "Conexión cerrada.";
+        console.log("Conexión cerrada.");
+      };
+
+      websocket.onerror = (error) => {
+        console.error("WebSocket error: ", error);
+      };
+
+      startVideo();
+
+      // Controlador de eventos de teclado para agregar letras, espacio y retroceso
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "a") { // Tecla 'a' para agregar la última letra
+          phrase += ultimaLetra;
+          textoDisplay.textContent = phrase;
+        } else if (event.key === " ") { // Espacio para agregar un espacio
+          phrase += " ";
+          textoDisplay.textContent = phrase;
+        } else if (event.key === "Backspace") { // Retroceso para borrar la última letra
+          phrase = phrase.slice(0, -1);
+          textoDisplay.textContent = phrase;
+        }
+      });
+    </script>
+  </body>
+</html>
