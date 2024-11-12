@@ -19,6 +19,8 @@ Este sistema implementa un modelo de clasificación basado en **Random Forest** 
 
      ```
 2. **Estructura de Archivos:**
+3. 
+```
 ├── collect_imgs.py
 ├── create_dataset.py
 ├── data.pickle
@@ -28,6 +30,7 @@ Este sistema implementa un modelo de clasificación basado en **Random Forest** 
 │   ├── index.html
 │   ├── main.py
 │   ├── model.p
+```
 
 ## Configuración del Sistema
 
