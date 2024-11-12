@@ -76,7 +76,10 @@ Su función es deletrear palabras con las letras existentes en el modelo.
 ### Predicción en Tiempo Real:
 Para predicción en tiempo real, existen dos opciones:
 1. **Localmente**: Ejecutar el script `inference_classifier.py`.
-2. **Web**: Ejecutar el script `classifier_web.py`, que inicia un servidor WebSocket mediante FastAPI para recibir fotogramas y enviar predicciones en tiempo real.
+2. **Web**: Ejecutar el script `main.py`, que inicia un servidor WebSocket mediante FastAPI para recibir fotogramas y enviar predicciones en tiempo real.Para ejecutarlo realiza este comando en el terminal:
+   ```bash
+   uvicorn main:app --reload
+   ```
 
 ## Uso del Producto
 
