@@ -19,7 +19,7 @@ Este sistema implementa un modelo de clasificación basado en **Random Forest** 
 
      ```
 2. **Estructura de Archivos:**
-3. 
+   
 ```
 ├── collect_imgs.py
 ├── create_dataset.py
