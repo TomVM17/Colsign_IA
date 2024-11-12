@@ -43,7 +43,7 @@ Este sistema implementa un modelo de clasificación basado en **Random Forest** 
    - El script `inference_classifier.py` utiliza el modelo entrenado para predecir los gestos de la mano capturados en tiempo real por la cámara, mostrando los caracteres predichos en pantalla.
 
 5. **Predicción en Tiempo Real-Web:**
-   - El script `main.py` utiliza el modelo entrenado para predecir los gestos de la mano capturados en tiempo real por la cámara, mostrando los caracteres predichos en pantalla pero en una interfaz web, también       tiene la ocpión para deletrear.
+   - El script `main.py` utiliza el modelo entrenado para realizar las funciones que predicen los gestos de la mano capturados en tiempo real por la cámara, mostrando los caracteres predichos en pantalla.
 
 # Documentación para el Usuario (Mínimo Producto Viable)
 
@@ -76,6 +76,7 @@ Para predicción en tiempo real, existen dos opciones:
    ```bash
    uvicorn main:app --reload
    ```
+   Por ultimo das doble click al index para que te cargue en tu navegador web, das permiso a la camara y ya puedes empezar a deletrear.
 
 ## Uso del Producto
 
