@@ -14,7 +14,7 @@ Este sistema implementa un modelo de clasificación basado en **Random Forest** 
    - fastapi
    - uvicorn
    - websockets
-          ```bash
+     ```bash
      pip install fastapi uvicorn websockets
      ```
 2. **Estructura de Archivos:**
