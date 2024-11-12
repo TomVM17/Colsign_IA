@@ -14,10 +14,6 @@ Este sistema implementa un modelo de clasificación basado en **Random Forest** 
    - fastapi
    - uvicorn
    - websockets
-     ```bash
-     pip install fastapi uvicorn websockets pickle-mixin opencv-python mediapipe numpy scikit-learn
-
-     ```
 2. **Estructura de Archivos:**
    
 ```
@@ -47,7 +43,7 @@ Este sistema implementa un modelo de clasificación basado en **Random Forest** 
    - El script `inference_classifier.py` utiliza el modelo entrenado para predecir los gestos de la mano capturados en tiempo real por la cámara, mostrando los caracteres predichos en pantalla.
 
 5. **Predicción en Tiempo Real-Web:**
-   - El script `classifier_web.py` utiliza el modelo entrenado para predecir los gestos de la mano capturados en tiempo real por la cámara, mostrando los caracteres predichos en pantalla pero en una web.
+   - El script `main.py` utiliza el modelo entrenado para predecir los gestos de la mano capturados en tiempo real por la cámara, mostrando los caracteres predichos en pantalla pero en una interfaz web, también       tiene la ocpión para deletrear.
 
 # Documentación para el Usuario (Mínimo Producto Viable)
 
@@ -60,7 +56,7 @@ Su función es deletrear palabras con las letras existentes en el modelo.
 ## Requisitos del Sistema
 - Una computadora con una cámara web.
 - Python 3.7 o superior.
-- Librerías necesarias: OpenCV, MediaPipe, NumPy, pickle, scikit-learn, fastapi, uvicorn.
+- Librerías necesarias: OpenCV, MediaPipe, NumPy, pickle, scikit-learn, fastapi, uvicorn, websockets.
 
 ## Instalación y Configuración
 
@@ -70,7 +66,7 @@ Su función es deletrear palabras con las letras existentes en el modelo.
 2. **Instalar Dependencias:**
    - Abra una terminal y ejecute el siguiente comando para instalar las librerías necesarias:
      ```bash
-     pip install opencv-python mediapipe numpy scikit-learn
+     pip install fastapi uvicorn websockets pickle-mixin opencv-python mediapipe numpy scikit-learn
      ```
 
 ### Predicción en Tiempo Real:
