@@ -76,7 +76,7 @@ Para predicción en tiempo real, existen dos opciones:
    ```bash
    uvicorn main:app --reload
    ```
-   Por ultimo das doble click al index para que te cargue en tu navegador web, das permiso a la camara y ya puedes empezar a deletrear.
+   Por ultimo das doble click al `index.html` para que te cargue en tu navegador web, das permiso a la camara y ya puedes empezar a deletrear.
 
 ## Uso del Producto
 
