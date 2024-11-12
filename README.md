@@ -11,7 +11,12 @@ Este sistema implementa un modelo de clasificación basado en **Random Forest** 
    - `mediapipe`
    - `numpy`
    - `scikit-learn`
-
+   - fastapi
+   - uvicorn
+   - websockets
+          ```bash
+     pip install fastapi uvicorn websockets
+     ```
 2. **Estructura de Archivos:**
    - `data/` (directorio que contiene las imágenes de entrenamiento organizadas por clases)
    - `data.pickle` (archivo que contiene los datos y etiquetas de entrenamiento serializados)
